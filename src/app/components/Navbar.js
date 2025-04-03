@@ -7,7 +7,7 @@ import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [user, setUser] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // State to manage menu toggle
 
   useEffect(() => {
     async function getUser() {
@@ -32,24 +32,25 @@ export default function Navbar() {
   return (
     <nav className="p-4 bg-gray-800 text-white">
       <div className="flex justify-between items-center">
-        <div className="text-lg font-bold">Student Portal</div>
-        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden">
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        <Link href="/" className="text-lg font-bold">
+          Student Portal
+        </Link>
+        <button
+          className="md:hidden text-white"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
-        <div className={`flex-col md:flex-row gap-6 md:flex ${isOpen ? "flex" : "hidden"} md:items-center`}> 
-          <Link href="/" className="hover:text-gray-300">Home</Link>
-          <Link href="/pages/register" className="hover:text-gray-300">Add Student</Link>
+        <div className="hidden md:flex gap-6">
+          <Link href="/pages/register" className="hover:text-gray-300">Register Student</Link>
           <Link href="/pages/students" className="hover:text-gray-300">Student List</Link>
           {user ? (
-            <div className="flex items-center gap-4">
-              <p>Welcome, {user.user_metadata.full_name}</p>
-              <button
-                onClick={handleSignOut}
-                className="bg-red-500 px-4 py-2 rounded hover:bg-red-600"
-              >
-                Logout
-              </button>
-            </div>
+            <button
+              onClick={handleSignOut}
+              className="bg-red-500 px-4 py-2 rounded hover:bg-red-600"
+            >
+              Logout
+            </button>
           ) : (
             <button
               onClick={handleSignIn}
@@ -60,6 +61,28 @@ export default function Navbar() {
           )}
         </div>
       </div>
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="flex flex-col md:hidden mt-4 gap-2">
+          <Link href="/pages/register" className="hover:text-gray-300">Register Student</Link>
+          <Link href="/pages/students" className="hover:text-gray-300">Student List</Link>
+          {user ? (
+            <button
+              onClick={handleSignOut}
+              className="bg-red-500 px-4 py-2 rounded hover:bg-red-600"
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              onClick={handleSignIn}
+              className="bg-blue-500 px-4 py-2 rounded hover:bg-blue-600"
+            >
+              Sign in with Google
+            </button>
+          )}
+        </div>
+      )}
     </nav>
   );
 }

@@ -25,7 +25,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="p-4 text-center">
         {/* <h1 className="text-2xl font-bold">Welcome to DevConnect</h1>
         <p className="text-gray-600">
