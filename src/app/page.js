@@ -27,11 +27,11 @@ export default function HomePage() {
     <div>
       <Navbar />
       <div className="p-4 text-center">
-        <h1 className="text-2xl font-bold">Welcome to DevConnect</h1>
+        {/* <h1 className="text-2xl font-bold">Welcome to DevConnect</h1>
         <p className="text-gray-600">
           A place to connect with developers and share ideas
-        </p>
-        <DarkModeToggle />
+        </p> */}
+        {/* <DarkModeToggle /> */}
         {user ? (
           <p className="mt-4">Logged in as: {user.email}</p>
         ) : (
