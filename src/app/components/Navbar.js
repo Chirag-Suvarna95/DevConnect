@@ -29,7 +29,7 @@ export default function Navbar() {
 
   return (
     <nav className="p-4 bg-gray-800 text-white flex justify-between">
-      <Link href="/" className="text-lg font-bold">DevConnect</Link>
+      <Link href="/" className="text-lg font-bold">Student List</Link>
       <div>
         {user ? (
           <div className="flex items-center gap-4">
